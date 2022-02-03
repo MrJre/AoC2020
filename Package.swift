@@ -22,6 +22,7 @@ let package = Package(
             name: "AoC2020",
             dependencies: [],
         resources: [
+            .copy("Day1/Resources/Day1.txt"),
         ]),
         .testTarget(
             name: "AoC2020Tests",
