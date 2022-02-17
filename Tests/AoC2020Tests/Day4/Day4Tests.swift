@@ -56,88 +56,131 @@ final class Day4Tests: XCTestCase {
     }
     
     func testBirthYearIsValid() {
-        let year = "2002"
-        XCTAssertTrue(isBirthYearValid(year: year))
+        let passport = ["byr": "2002"]
+        XCTAssertTrue(isBirthYearValid(passport: passport))
     }
     
     func testBirthYearIsInvalid() {
-        let year = "2003"
-        XCTAssertFalse(isBirthYearValid(year: year))
+        let passport = ["byr": "2003"]
+        XCTAssertFalse(isBirthYearValid(passport: passport))
     }
     
     func testIssueYearIsValid() {
-        let year = "2020"
-        XCTAssertTrue(isIssueYearValid(year: year))
+        let passport = ["iyr": "2020"]
+        XCTAssertTrue(isIssueYearValid(passport: passport))
     }
     
     func testIssueYearIsInvalid() {
-        let year = "2021"
-        XCTAssertFalse(isIssueYearValid(year: year))
+        let passport = ["iyr": "2021"]
+        XCTAssertFalse(isIssueYearValid(passport: passport))
     }
     
     func testExpirationYearIsValid() {
-        let year = "2021"
-        XCTAssertTrue(isExpirationYearValid(year: year))
+        let passport = ["eyr": "2021"]
+        XCTAssertTrue(isExpirationYearValid(passport: passport))
     }
     
     func testExpirationYearIsInvalid() {
-        let year = "2033"
-        XCTAssertFalse(isExpirationYearValid(year: year))
+        let passport = ["eyr": "2033"]
+        XCTAssertFalse(isExpirationYearValid(passport: passport))
     }
     
     
     func testHeightInInchIsValid() {
-        let hgt = "60in"
-        XCTAssertTrue(isHeightValid(hgt: hgt))
+        let passport = ["hgt": "60in"]
+        XCTAssertTrue(isHeightValid(passport: passport))
     }
     
     func testHeightInInchIsInvalid() {
-        let hgt = "190in"
-        XCTAssertFalse(isHeightValid(hgt: hgt))
+        let passport = ["hgt": "190in"]
+        XCTAssertFalse(isHeightValid(passport: passport))
     }
     
     func testHeightInCmIsValid() {
-        let hgt = "190cm"
-        XCTAssertTrue(isHeightValid(hgt: hgt))
+        let passport = ["hgt": "190cm"]
+        XCTAssertTrue(isHeightValid(passport: passport))
     }
     
     func testHeightInCmIsInvalid() {
-        let hgt = "194cm"
-        XCTAssertFalse(isHeightValid(hgt: hgt))
+        let passport = ["hgt": "194cm"]
+        XCTAssertFalse(isHeightValid(passport: passport))
     }
     
     func testHairColorIsValid() {
-        let hcl = "#123abc"
-        XCTAssertTrue(isHairColorValid(hcl: hcl))
+        let passport = ["hcl": "#123abc"]
+        XCTAssertTrue(isHairColorValid(passport: passport))
     }
     
     func testHairColorIsInvalid() {
-        let hcl = "#123abz"
-        XCTAssertFalse(isHairColorValid(hcl: hcl))
+        let passport = ["hcl": "#123abz"]
+        XCTAssertFalse(isHairColorValid(passport: passport))
     }
     func testHairColorIsInvalidWithoutPound() {
-        let hcl = "123abz"
-        XCTAssertFalse(isHairColorValid(hcl: hcl))
+        let passport = ["hcl": "123abz"]
+        XCTAssertFalse(isHairColorValid(passport: passport))
     }
     
     func testEyeColorIsValid() {
-        let ecl = "brn"
-        XCTAssertTrue(isEyeColorValid(ecl: ecl))
+        let passport = ["ecl": "brn"]
+        XCTAssertTrue(isEyeColorValid(passport: passport))
     }
     
     func testEyeColorIsInvalid() {
-        let ecl = "prl"
-        XCTAssertFalse(isEyeColorValid(ecl: ecl))
+        let passport = ["ecl": "prl"]
+        XCTAssertFalse(isEyeColorValid(passport: passport))
     }
     
     func testPassportIsValid() {
-        let pid = "000000001"
-        XCTAssertTrue(isPassportIdValid(pid: pid))
+        let passport = ["pid": "000000001"]
+        XCTAssertTrue(isPassportIdValid(passport: passport))
     }
     
     func testPassportIsInvalid() {
-        let pid = "0123456789"
-        XCTAssertFalse(isPassportIdValid(pid: pid))
+        let passport = ["pid": "0123456789"]
+        XCTAssertFalse(isPassportIdValid(passport: passport))
+    }
+    
+    func testPart2InvalidPassports() {
+        let data = """
+            eyr:1972 cid:100
+            hcl:#18171d ecl:amb hgt:170 pid:186cm iyr:2018 byr:1926
+
+            iyr:2019
+            hcl:#602927 eyr:1967 hgt:170cm
+            ecl:grn pid:012533040 byr:1946
+
+            hcl:dab227 iyr:2012
+            ecl:brn hgt:182cm pid:021572410 eyr:2020 byr:1992 cid:277
+
+            hgt:59cm ecl:zzz
+            eyr:2038 hcl:74454a iyr:2023
+            pid:3556412378 byr:2007
+            """
+        
+        let input = parseDay4Input(from: data)
+        
+        XCTAssertEqual(day4part2(input: input), 0)
+    }
+    
+    func testPart2ValidPassports() {
+        let data = """
+            pid:087499704 hgt:74in ecl:grn iyr:2012 eyr:2030 byr:1980
+            hcl:#623a2f
+
+            eyr:2029 ecl:blu cid:129 byr:1989
+            iyr:2014 pid:896056539 hcl:#a97842 hgt:165cm
+
+            hcl:#888785
+            hgt:164cm byr:2001 iyr:2015 cid:88
+            pid:545766238 ecl:hzl
+            eyr:2022
+
+            iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719
+            """
+        
+        let input = parseDay4Input(from: data)
+        
+        XCTAssertEqual(day4part2(input: input), 4)
     }
 }
     
