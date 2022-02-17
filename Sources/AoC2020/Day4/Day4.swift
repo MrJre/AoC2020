@@ -40,7 +40,7 @@ func isHeightValid(passport: [String: String]) -> Bool {
 
 func isHairColorValid(passport: [String: String]) -> Bool {
     guard let hcl = passport["hcl"] else { return false }
-    return hcl.contains("#") && hcl.count == 7 && hcl.trimmingCharacters(in: .decimalDigits.union(CharacterSet(["a","b","c","d","e","f","#"]))).count == 0
+    return hcl.contains("#") && hcl.count == 7 && hcl.trimmingCharacters(in: .decimalDigits.union(CharacterSet(["a","b","c","d","e","f","#"]))).isEmpty
 }
 
 func isEyeColorValid(passport: [String: String]) -> Bool {
@@ -50,7 +50,7 @@ func isEyeColorValid(passport: [String: String]) -> Bool {
 
 func isPassportIdValid(passport: [String: String]) -> Bool {
     guard let pid = passport["pid"] else { return false }
-    return pid.count == 9 && pid.trimmingCharacters(in: .decimalDigits).count == 0
+    return pid.count == 9 && pid.trimmingCharacters(in: .decimalDigits).isEmpty
 }
 
 func isBirthYearValid(passport: [String: String]) -> Bool {
