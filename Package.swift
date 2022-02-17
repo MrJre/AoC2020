@@ -24,7 +24,8 @@ let package = Package(
         resources: [
             .copy("Day1/Resources/Day1.txt"),
             .copy("Day2/Resources/Day2.txt"),
-            .copy("Day3/Resources/Day3.txt")
+            .copy("Day3/Resources/Day3.txt"),
+            .copy("Day4/Resources/Day4.txt")
         ]),
         .testTarget(
             name: "AoC2020Tests",

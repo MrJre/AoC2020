@@ -21,9 +21,7 @@ func calcNumberOfTrees(in grid: GeologyGrid, given slope: (x: Int, y: Int)) -> I
     var y = slope.y
     
     while y < grid.height {
-        if grid.map[y * grid.width + x % grid.width] == "#" {
-            treeCount += 1
-        }
+        treeCount += grid.map[y * grid.width + x % grid.width] == "#" ? 1 : 0
         x += slope.x
         y += slope.y
     }
