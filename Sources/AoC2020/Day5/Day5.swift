@@ -1,10 +1,7 @@
 import Foundation
 
 func day5part1(input: [String]) -> Int {
-    
-    let seatIDs = input.map(calculateSeatId(pass:))
-    
-    return seatIDs.reduce(0, max)
+    input.map(calculateSeatId(pass:)).reduce(0, max)
 }
 
 func day5part2(input: [String]) -> Int {

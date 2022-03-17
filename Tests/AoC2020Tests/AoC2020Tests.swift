@@ -83,6 +83,22 @@ final class AoC2020Tests: XCTestCase {
         let result = day5part2(input: input)
         XCTAssertEqual(result, 727)
     }
+    
+    func testDay6Part1() throws {
+        let file = file(forDay: 6)
+        let input = parseDay6Input(from: file)
+        
+        let result = day6part1(input: input)
+        XCTAssertEqual(result, 6161)
+    }
+    
+    func testDay6Part2() throws {
+        let file = file(forDay: 6)
+        let input = parseDay6Input(from: file)
+        
+        let result = day6part2(input: input)
+        XCTAssertEqual(result, 2971)
+    }
 }
 
 func file(forDay day: Int) -> String {
