@@ -68,7 +68,6 @@ func isExpirationYearValid(passport: [String: String]) -> Bool {
     return isYearValid(year: year, range: 2020...2030)
 }
 
-
 private func isYearValid(year: String, range: ClosedRange<Int>) -> Bool {
     guard let year = Int(year) else { return false }
     return range ~= year
